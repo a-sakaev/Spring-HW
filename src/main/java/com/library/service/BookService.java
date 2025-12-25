@@ -17,23 +17,24 @@ public class BookService {
         this.repository = repository;
     }
 
-    public void createBook(Book book){
+    public Book createBook(Book book){
         if (book.getAuthor() == null || book.getTitle() == null ||
                 book.getPublicationYear() <=1000 ||
                 book.getPublicationYear() > LocalDateTime.now().getYear()){
             throw new IllegalArgumentException("Некорректные данные книги");
         }
         repository.save(book);
+        return book;
     }
 
-    public Book getBookById(Long id){
+    public Optional<Book> getBookById(Long id){
         Optional<Book> book = repository.findById(id);
         if (book.isPresent()){
             System.out.println(book.toString());
-            return book.get();
+            return book;
         }else {
             System.out.println("Книга не найдена");
-            return null;
+            return book;
         }
     }
 
@@ -42,10 +43,6 @@ public class BookService {
     }
 
     public void updateBook(Book book){
-        if (repository.findById(book.getId()).isEmpty()){
-            throw new IllegalArgumentException("Нет книги с таким id");
-        }
-
         repository.update(book);
     }
 

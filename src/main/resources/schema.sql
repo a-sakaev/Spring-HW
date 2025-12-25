@@ -1,6 +1,8 @@
+DROP TABLE IF EXISTS books;
+
 CREATE TABLE books (
-id BIGINT PRIMARY KEY AUTO_INCREMENT,
-title VARCHAR(255) NOT NULL,
-author VARCHAR(255) NOT NULL,
-publication_year INTEGER
-)
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    publication_year INTEGER
+);
