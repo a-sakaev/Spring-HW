@@ -3,6 +3,7 @@ package com.library.service;
 import com.library.dto.DepartmentDto;
 import com.library.model.Department;
 import com.library.repository.DepartmentRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class DepartmentService {
         this.repository = repository;
     }
 
+    @Transactional
     public DepartmentDto createDepartment(DepartmentDto dto) {
         if (dto == null) {
             throw new IllegalArgumentException("Неверные параметры отдела");
@@ -42,6 +44,7 @@ public class DepartmentService {
                 .toList();
     }
 
+    @Transactional
     public DepartmentDto update(Long id, DepartmentDto dto) {
         if (id == null || dto == null) {
             throw new IllegalArgumentException("Некорректные параметры");
@@ -54,6 +57,7 @@ public class DepartmentService {
         return toDto(saved);
     }
 
+    @Transactional
     public void delete(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Некорректные параметры");

@@ -59,6 +59,7 @@ public class EmployeeService {
                 .toList();
     }
 
+    @Transactional
     public EmployeeDto update(Long id, EmployeeDto dto) {
         if (id == null || dto == null) {
             throw new IllegalArgumentException("Некорректные параметры");
@@ -82,6 +83,7 @@ public class EmployeeService {
         return toDto(saved);
     }
 
+    @Transactional
     public void delete(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("Некорректные параметры");
